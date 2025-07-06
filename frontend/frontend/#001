@@ -1,16 +1,3 @@
-// ================= FRONTEND =================
-// Ruta: /frontend/
-
-// 1. Crea el proyecto con Vite (ya configurado para React + Tailwind + Chart.js)
-
-// Ejecuta en consola local si lo descargas:
-// npm create vite@latest frontend --template react
-// cd frontend
-// npm install
-// npm install tailwindcss postcss autoprefixer chart.js react-chartjs-2
-// npx tailwindcss init -p
-
-// tailwind.config.js
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: { extend: {} },
