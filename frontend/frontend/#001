@@ -1,0 +1,60 @@
+// ================= FRONTEND =================
+// Ruta: /frontend/
+
+// 1. Crea el proyecto con Vite (ya configurado para React + Tailwind + Chart.js)
+
+// Ejecuta en consola local si lo descargas:
+// npm create vite@latest frontend --template react
+// cd frontend
+// npm install
+// npm install tailwindcss postcss autoprefixer chart.js react-chartjs-2
+// npx tailwindcss init -p
+
+// tailwind.config.js
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: { extend: {} },
+  plugins: [],
+};
+
+// src/index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// src/App.jsx
+import { useEffect, useState } from 'react';
+import { Chart } from 'react-chartjs-2';
+import { CategoryScale, Chart as ChartJS, BarElement, LinearScale } from 'chart.js';
+ChartJS.register(CategoryScale, BarElement, LinearScale);
+
+function App() {
+  const [mensaje, setMensaje] = useState('');
+
+  useEffect(() => {
+    fetch("https://tu-backend.onrender.com")
+      .then((res) => res.text())
+      .then((data) => setMensaje(data));
+  }, []);
+
+  const data = {
+    labels: ['Ene', 'Feb', 'Mar'],
+    datasets: [{
+      label: 'Anexos registrados',
+      data: [4, 8, 5],
+      backgroundColor: 'rgba(59, 130, 246, 0.5)',
+    }]
+  };
+
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold">Dashboard SRI</h1>
+      <p>{mensaje}</p>
+      <div className="mt-4 w-1/2">
+        <Chart type='bar' data={data} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
